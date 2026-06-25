@@ -1,0 +1,16 @@
+services:
+  weather-mcp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: weather-mcp
+    env_file:
+      - .env
+    environment:
+      WEATHER_MCP_DATABASE_URL: sqlite:////app/data/weather_mcp.db
+    volumes:
+      - weather_mcp_data:/app/data
+    restart: unless-stopped
+
+volumes:
+  weather_mcp_data:
